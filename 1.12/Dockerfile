@@ -52,7 +52,7 @@ RUN sed -i -f /opt/app-root/nginxconf.sed /etc/nginx/nginx.conf && \
     mkdir -p /opt/app-root/etc/nginx.d/ && \
     mkdir -p /opt/app-root/etc/nginx.default.d/ && \
     chmod -R a+rwx /opt/app-root/etc && \
-    chown -R 1001:0 /opt/app-root && \
+    chown -R 1001:0 /opt/app-root
 
 USER 1001
 
