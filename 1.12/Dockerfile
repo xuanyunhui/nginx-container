@@ -8,7 +8,7 @@ FROM centos/s2i-base-centos7
 EXPOSE 8080
 EXPOSE 8443
 
-ENV NGINX_VERSION=1.12
+ENV NGINX_VERSION=1.12.1
 
 ENV SUMMARY="Platform for running nginx $NGINX_VERSION or building nginx-based application" \
     DESCRIPTION="Nginx is a web server and a reverse proxy server for HTTP, SMTP, POP3 and IMAP \
@@ -23,10 +23,10 @@ LABEL summary="$SUMMARY" \
       io.k8s.display-name="Nginx 1.12" \
       io.openshift.expose-services="8080:http" \
       io.openshift.expose-services="8443:https" \
-      io.openshift.tags="builder,nginx,nginx-1.12" \
+      io.openshift.tags="builder,nginx,nginx-1.12.1" \
       com.redhat.component="nginx-1.12-docker" \
       name="centos/nginx-112-centos7" \
-      version="1.12" \
+      version="1.12.1" \
       release="1"
 
 ENV NGINX_CONFIGURATION_PATH=/opt/app-root/etc/nginx.d
@@ -34,7 +34,7 @@ ENV NGINX_DEFAULT_CONF_PATH=/opt/app-root/etc/nginx.default.d
 
 RUN yum install -y yum-utils gettext hostname && \
     yum install -y epel-release && \
-    INSTALL_PKGS="nss_wrapper bind-utils nginx-1.12" && \
+    INSTALL_PKGS="nss_wrapper bind-utils nginx-$NGINX_VERSION nginx-all-modules-$NGINX_VERSION nginx-filesystem-$NGINX_VERSION" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all
