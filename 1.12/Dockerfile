@@ -33,7 +33,8 @@ ENV NGINX_CONFIGURATION_PATH=/opt/app-root/etc/nginx.d
 ENV NGINX_DEFAULT_CONF_PATH=/opt/app-root/etc/nginx.default.d
 
 RUN yum install -y yum-utils gettext hostname && \
-    yum install -y epel-release http://dfire.oss-cn-hangzhou.aliyuncs.com/operations/yumrepos/7/x86_64/2/2dfire-release-7-2.noarch.rpm && \
+    yum install -y epel-release && \
+    yum-config-manager --add-repo=http://dfire.oss-cn-hangzhou.aliyuncs.com/operations/yumrepos/7/x86_64 && \
     INSTALL_PKGS="nss_wrapper bind-utils nginx-$NGINX_VERSION nginx-all-modules-$NGINX_VERSION nginx-filesystem-$NGINX_VERSION" && \
     yum install -y --setopt=tsflags=nodocs --nogpgcheck $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
