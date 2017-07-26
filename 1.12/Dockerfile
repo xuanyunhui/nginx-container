@@ -52,8 +52,8 @@ COPY ./root/ /
 RUN sed -i -f /opt/app-root/nginxconf.sed /etc/nginx/nginx.conf && \
     mkdir -p /opt/app-root/etc/nginx.d/ && \
     mkdir -p /opt/app-root/etc/nginx.default.d/ && \
-    chmod -R a+rwx /opt/app-root/etc /var/lib/nginx /var/log/nginx && \
-    chown -R 1001:0 /opt/app-root /var/lib/nginx /var/log/nginx
+    chmod -R a+rwx /opt/app-root/etc /var/lib/nginx /var/log/nginx /run && \
+    chown -R 1001:0 /opt/app-root /var/lib/nginx /var/log/nginx /run
 
 USER 1001
 
